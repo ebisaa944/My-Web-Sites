@@ -180,24 +180,48 @@ $(function() {
         }
     });
 
-    // Form submission enhancement
+    // Contact Form Submission with Formspree
     $('#contact-form').on('submit', function(e) {
+        e.preventDefault();
+        
         const $form = $(this);
         const $submitBtn = $form.find('button[type="submit"]');
+        const $messages = $form.find('.messages');
+        const originalText = $submitBtn.find('span').text();
         
-        // Add loading state
+        // Show loading state
         $submitBtn.html('<i class="fas fa-spinner fa-spin"></i> Sending...').prop('disabled', true);
+        $messages.html('');
         
-        // Simulate form submission (replace with actual AJAX call)
-        setTimeout(function() {
-            $submitBtn.html('Message Sent!').addClass('success');
-            setTimeout(function() {
-                $submitBtn.html('Send Message').removeClass('success').prop('disabled', false);
+        // Get form data
+        const formData = new FormData($form[0]);
+        
+        // Send to Formspree
+        fetch($form.attr('action'), {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Success
+                $messages.html('<div class="alert alert-success">✅ Message sent successfully! I\'ll get back to you soon.</div>');
                 $form[0].reset();
-            }, 2000);
-        }, 1500);
-        
-        e.preventDefault();
+            } else {
+                // Error
+                $messages.html('<div class="alert alert-danger">❌ There was a problem sending your message. Please email me directly at ebisaachame123@gmail.com</div>');
+            }
+        })
+        .catch(error => {
+            // Network error
+            $messages.html('<div class="alert alert-danger">❌ Network error. Please try again or email me directly at ebisaachame123@gmail.com</div>');
+        })
+        .finally(() => {
+            // Reset button state
+            $submitBtn.html('<span>' + originalText + '</span>').prop('disabled', false);
+        });
     });
 
     // Visitor counter (simulated)
@@ -399,32 +423,31 @@ $(window).on("load",function (){
 
     });
 
-    // contact form validator
-    $('#contact-form').validator();
-
-    $('#contact-form').on('submit', function (e) {
-        if (!e.isDefaultPrevented()) {
-            var url = "contact.php";
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: $(this).serialize(),
-                success: function (data)
-                {
-                    var messageAlert = 'alert-' + data.type;
-                    var messageText = data.message;
-
-                    var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
-                    if (messageAlert && messageText) {
-                        $('#contact-form').find('.messages').html(alertBox);
-                        $('#contact-form')[0].reset();
-                    }
+    // Initialize contact form with Formspree
+    function initContactForm() {
+        const $contactForm = $('#contact-form');
+        
+        if ($contactForm.length) {
+            // Update Formspree action to working endpoint
+            $contactForm.attr('action', 'https://formspree.io/f/mqkrvgjn');
+            
+            // Remove old validator if exists
+            $contactForm.off('submit').validator('destroy');
+            
+            // Add custom validation styles
+            $contactForm.find('input, textarea').on('blur', function() {
+                const $this = $(this);
+                if ($this.val().trim() === '') {
+                    $this.addClass('error');
+                } else {
+                    $this.removeClass('error');
                 }
             });
-            return false;
         }
-    });
+    }
+
+    // Initialize contact form
+    initContactForm();
 
     // Initialize animations after page load
     setTimeout(function() {
