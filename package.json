@@ -1,5 +1,11 @@
 {
-  "dependencies": {
-    "resend": "^6.5.2"
+  \"name\": \"my-web-sites\",
+  \"version\": \"1.0.0\",
+  \"type\": \"module\",
+  \"dependencies\": {
+    \"resend\": \"^6.5.2\"
+  },
+  \"engines\": {
+    \"node\": \">=18.x\"
   }
 }

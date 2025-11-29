@@ -1,0 +1,23 @@
+{
+  \"version\": 2,
+  \"builds\": [
+    {
+      \"src\": \"api/contact.js\",
+      \"use\": \"@vercel/node\"
+    },
+    {
+      \"src\": \"portfolio/**/*\",
+      \"use\": \"@vercel/static\"
+    }
+  ],
+  \"routes\": [
+    {
+      \"src\": \"/api/(.*)\",
+      \"dest\": \"/api/\"
+    },
+    {
+      \"src\": \"/(.*)\",
+      \"dest\": \"/portfolio/ui-themez.smartinnovates.net/items/zain/\"
+    }
+  ]
+}
