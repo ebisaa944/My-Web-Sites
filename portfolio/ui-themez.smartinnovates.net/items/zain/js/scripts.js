@@ -180,7 +180,7 @@ $(function() {
         }
     });
 
-    // Contact Form Submission with Formspree
+    // Contact Form Submission with Resend.com
     $('#contact-form').on('submit', function(e) {
         e.preventDefault();
         
@@ -194,15 +194,20 @@ $(function() {
         $messages.html('');
         
         // Get form data
-        const formData = new FormData($form[0]);
+        const formData = {
+            name: $form.find('input[name="name"]').val(),
+            email: $form.find('input[name="email"]').val(),
+            subject: $form.find('input[name="subject"]').val(),
+            message: $form.find('textarea[name="message"]').val()
+        };
         
-        // Send to Formspree
-        fetch($form.attr('action'), {
+        // Send to your Vercel API endpoint
+        fetch('/api/contact', {
             method: 'POST',
-            body: formData,
             headers: {
-                'Accept': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
         })
         .then(response => {
             if (response.ok) {
@@ -211,7 +216,11 @@ $(function() {
                 $form[0].reset();
             } else {
                 // Error
-                $messages.html('<div class="alert alert-danger">❌ There was a problem sending your message. Please email me directly at ebisaachame123@gmail.com</div>');
+                response.json().then(data => {
+                    $messages.html('<div class="alert alert-danger">❌ ' + (data.error || 'There was a problem sending your message. Please email me directly at ebisaachame123@gmail.com') + '</div>');
+                }).catch(() => {
+                    $messages.html('<div class="alert alert-danger">❌ There was a problem sending your message. Please email me directly at ebisaachame123@gmail.com</div>');
+                });
             }
         })
         .catch(error => {
@@ -423,13 +432,13 @@ $(window).on("load",function (){
 
     });
 
-    // Initialize contact form with Formspree
+    // Initialize contact form for Resend.com
     function initContactForm() {
         const $contactForm = $('#contact-form');
         
         if ($contactForm.length) {
-            // Update Formspree action to working endpoint
-            $contactForm.attr('action', 'https://formspree.io/f/mqkrvgjn');
+            // Remove any Formspree action and method attributes
+            $contactForm.removeAttr('action').removeAttr('method');
             
             // Remove old validator if exists
             $contactForm.off('submit').validator('destroy');
