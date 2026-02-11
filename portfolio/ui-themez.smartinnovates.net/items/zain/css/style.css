@@ -1611,58 +1611,918 @@ body.dark-mode .contact .form textarea {
     animation: slideIn 0.6s ease-out;
 }
 
+
+
+/*# sourceMappingURL=style.css.map */
+
 /* =====================================
-   ==== Start Testimonials */
-.testimonials .item {
-    padding: 40px 30px;
-    background: #0a0a0c;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+==== Experience Section (Flexbox Version) */
+.experience {
+    background: #0F0F0F;
 }
 
-.testimonials .item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.testimonials .img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 20px;
-    border: 3px solid var(--primary-color);
-}
-
-.testimonials .stars {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-.testimonials .cont p {
-    font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.testimonials .cont h6 {
+.experience .section-head h4 {
     color: #fff;
+}
+
+section:hover .experience .section-head h4 {
+    color: transparent;
+    -webkit-text-stroke: 1px #333;
+}
+
+.experience-container {
+    margin-top: 40px;
+}
+
+.experience-item {
+    background: #0a0a0c;
+    border-radius: 5px;
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: all 0.4s ease;
+    border-left: 4px solid #c49b66;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.3);
+    border-left-color: #fff;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.experience-title {
+    flex: 1;
+    min-width: 250px;
+}
+
+.experience-title h5 {
+    color: #fff;
+    font-size: 20px;
     margin-bottom: 5px;
     font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
-.testimonials .cont span {
+.experience-title h6 {
     color: #c49b66;
-    font-size: 12px;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-family: 'Josefin Sans', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Dark mode testimonials */
-body.dark-mode .testimonials .item {
-    background: #111;
+.experience-title p {
+    color: #8f8f8f;
+    font-size: 14px;
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+}
+
+.experience-date {
+    background: #c49b66;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 10px 30px -4px rgba(196, 155, 102, 0.2);
+    white-space: nowrap;
+}
+
+.experience-body {
+    margin-top: 15px;
+}
+
+.experience-body p {
+    color: #8f8f8f;
+    font-size: 14px;
+    line-height: 1.8;
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 15px;
+}
+
+.experience-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.skill-tag {
+    background: rgba(196, 155, 102, 0.1);
+    color: #c49b66;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Rubik', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.experience-item:hover .skill-tag {
+    background: #c49b66;
+    color: white;
+}
+
+/* Icon styling for different experience types */
+.experience-item.banking .experience-date {
+    background: #27ae60;
+}
+
+.experience-item.construction .experience-date {
+    background: #e67e22;
+}
+
+.experience-item.internship .experience-date {
+    background: #3498db;
+}
+
+.experience-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(196, 155, 102, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+}
+
+.experience-item:hover .experience-icon {
+    background: #c49b66;
+}
+
+.experience-icon i {
+    font-size: 20px;
+    color: #c49b66;
+    transition: all 0.4s ease;
+}
+
+.experience-item:hover .experience-icon i {
+    color: white;
+}
+
+/* Alternative layout with icon */
+.experience-item.with-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.experience-item.with-icon .experience-content {
+    flex: 1;
+}
+
+.experience-item.with-icon .experience-header {
+    margin-top: 0;
+}
+
+/* Responsive Design for Experience Section */
+@media screen and (max-width: 768px) {
+    .experience-item {
+        padding: 20px;
+    }
+    
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .experience-title {
+        min-width: auto;
+    }
+    
+    .experience-date {
+        align-self: flex-start;
+    }
+    
+    .experience-title h5 {
+        font-size: 18px;
+    }
+    
+    .experience-title h6 {
+        font-size: 14px;
+    }
+    
+    .experience-body p {
+        font-size: 13px;
+    }
+    
+    .experience-skills {
+        gap: 8px;
+    }
+    
+    .skill-tag {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+    
+    .experience-item.with-icon {
+        flex-direction: column;
+    }
+    
+    .experience-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .experience-item {
+        padding: 15px;
+    }
+    
+    .experience-date {
+        padding: 6px 15px;
+        font-size: 11px;
+    }
+    
+    .experience-skills {
+        justify-content: center;
+    }
+}
+
+/* Animation for experience items */
+.experience-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.experience-item.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
+/* =====================================
+==== Certifications Section */
+.certifications {
+    background: #0F0F0F;
+}
 
-/*# sourceMappingURL=style.css.map */
+.certifications .section-head h4 {
+    color: #fff;
+}
+
+section:hover .certifications .section-head h4 {
+    color: transparent;
+    -webkit-text-stroke: 1px #333;
+}
+
+.certifications-container {
+    margin-top: 40px;
+}
+
+.cert-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.cert-col {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.cert-item {
+    background: #0a0a0c;
+    padding: 30px;
+    border-radius: 5px;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cert-item:hover {
+    transform: translateY(-10px);
+    border-color: #c49b66;
+    box-shadow: 0px 15px 40px rgba(196, 155, 102, 0.2);
+}
+
+.cert-item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #c49b66;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.cert-item:hover:before {
+    transform: scaleX(1);
+}
+
+.cert-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.cert-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(196, 155, 102, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+}
+
+.cert-item:hover .cert-icon {
+    background: #c49b66;
+    transform: rotate(5deg);
+}
+
+.cert-icon i {
+    font-size: 24px;
+    color: #c49b66;
+    transition: all 0.4s ease;
+}
+
+.cert-item:hover .cert-icon i {
+    color: white;
+}
+
+.cert-title {
+    flex: 1;
+}
+
+.cert-title h5 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    line-height: 1.4;
+}
+
+.cert-issuer {
+    color: #c49b66;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Rubik', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.cert-body {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.cert-body p {
+    color: #8f8f8f;
+    font-size: 14px;
+    line-height: 1.8;
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+}
+
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    flex-shrink: 0;
+}
+
+.cert-date {
+    display: flex;
+    align-items: center;
+    color: #c49b66;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cert-date i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.cert-badge {
+    background: rgba(196, 155, 102, 0.1);
+    color: #c49b66;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+}
+
+.cert-item:hover .cert-badge {
+    background: #c49b66;
+    color: white;
+}
+
+/* Special styling for major certifications */
+.cert-item.major {
+    border: 2px solid rgba(196, 155, 102, 0.3);
+}
+
+.cert-item.major:hover {
+    border-color: #c49b66;
+    box-shadow: 0px 20px 50px rgba(196, 155, 102, 0.3);
+}
+
+.cert-item.major .cert-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(196, 155, 102, 0.2);
+}
+
+.cert-item.major .cert-icon i {
+    font-size: 28px;
+}
+
+/* View All Certifications Button */
+.certifications .view-all {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.certifications .view-all .butn {
+    margin: 0;
+}
+
+.certifications .butn-bord {
+    border-color: #c49b66;
+    padding: 12px 40px;
+}
+
+.certifications .butn-bord span {
+    color: #c49b66;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.certifications .butn-bord:hover {
+    background: #c49b66;
+}
+
+.certifications .butn-bord:hover span {
+    color: white;
+}
+
+/* =====================================
+==== Responsive Design for Certifications */
+@media screen and (max-width: 1200px) {
+    .cert-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .cert-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .cert-item {
+        padding: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cert-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .cert-row {
+        margin: 0 -10px;
+    }
+    
+    .cert-col {
+        padding: 0 10px;
+    }
+    
+    .cert-header {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .cert-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .cert-footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .cert-date {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .cert-item {
+        padding: 20px;
+    }
+    
+    .cert-title h5 {
+        font-size: 16px;
+    }
+    
+    .cert-issuer {
+        font-size: 13px;
+    }
+    
+    .cert-body p {
+        font-size: 13px;
+    }
+    
+    .cert-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .cert-item.major .cert-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .cert-icon i {
+        font-size: 20px;
+    }
+    
+    .cert-item.major .cert-icon i {
+        font-size: 24px;
+    }
+}
+
+/* =====================================
+==== Tools & Technologies Section */
+.tools {
+    background: #161617;
+}
+
+.tools .section-head h4 {
+    color: #fff;
+}
+
+section:hover .tools .section-head h4 {
+    color: transparent;
+    -webkit-text-stroke: 1px #333;
+}
+
+.tools-container {
+    margin-top: 40px;
+}
+
+.tools-category {
+    margin-bottom: 50px;
+}
+
+.tools-category:last-child {
+    margin-bottom: 0;
+}
+
+.tools-category h5 {
+    color: #c49b66;
+    font-size: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #c49b66;
+    display: inline-block;
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    position: relative;
+}
+
+.tools-category h5:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #fff;
+    transition: width 0.4s ease;
+}
+
+.tools-category:hover h5:after {
+    width: 100%;
+}
+
+.tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tool-item {
+    flex: 0 0 calc(20% - 20px);
+    max-width: calc(20% - 20px);
+    background: #0a0a0c;
+    border-radius: 8px;
+    padding: 25px 15px;
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-item:hover {
+    transform: translateY(-10px);
+    background: #c49b66;
+    box-shadow: 0px 15px 40px rgba(196, 155, 102, 0.3);
+    border-color: #c49b66;
+}
+
+.tool-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(196, 155, 102, 0.1);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+.tool-item:hover .tool-icon {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.1) rotate(5deg);
+}
+
+.tool-icon i {
+    font-size: 30px;
+    color: #c49b66;
+    transition: all 0.4s ease;
+}
+
+.tool-item:hover .tool-icon i {
+    color: white;
+}
+
+.tool-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    transition: all 0.4s ease;
+}
+
+.tool-item:hover .tool-name {
+    color: white;
+}
+
+.tool-category {
+    font-size: 11px;
+    color: #8f8f8f;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+}
+
+.tool-item:hover .tool-category {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Progress indicator for skill level */
+.tool-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tool-progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #c49b66;
+    border-radius: 2px;
+    transition: width 1.5s ease;
+}
+
+.tool-item:hover .tool-progress-bar {
+    background: white;
+}
+
+/* Skill level text */
+.tool-level {
+    font-size: 10px;
+    color: #8f8f8f;
+    margin-top: 5px;
+    font-family: 'Rubik', sans-serif;
+    transition: all 0.4s ease;
+}
+
+.tool-item:hover .tool-level {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Alternative layout without progress bars */
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tool-simple {
+    flex: 0 0 calc(12.5% - 15px);
+    max-width: calc(12.5% - 15px);
+    background: #0a0a0c;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.tool-simple:hover {
+    transform: translateY(-5px);
+    background: #c49b66;
+    box-shadow: 0px 10px 30px rgba(196, 155, 102, 0.3);
+    border-color: #c49b66;
+}
+
+.tool-simple i {
+    font-size: 35px;
+    color: #c49b66;
+    margin-bottom: 10px;
+    transition: all 0.4s ease;
+}
+
+.tool-simple:hover i {
+    color: white;
+    transform: scale(1.1);
+}
+
+.tool-simple span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8f8f8f;
+    display: block;
+    transition: all 0.4s ease;
+    font-family: 'Rubik', sans-serif;
+}
+
+.tool-simple:hover span {
+    color: white;
+}
+
+/* Responsive Design for Tools Section */
+@media screen and (max-width: 1200px) {
+    .tool-item {
+        flex: 0 0 calc(25% - 20px);
+        max-width: calc(25% - 20px);
+    }
+    
+    .tool-simple {
+        flex: 0 0 calc(16.666% - 15px);
+        max-width: calc(16.666% - 15px);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .tool-item {
+        flex: 0 0 calc(33.333% - 20px);
+        max-width: calc(33.333% - 20px);
+    }
+    
+    .tool-simple {
+        flex: 0 0 calc(20% - 15px);
+        max-width: calc(20% - 15px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .tools-category {
+        margin-bottom: 40px;
+    }
+    
+    .tool-item {
+        flex: 0 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+        padding: 20px 15px;
+    }
+    
+    .tool-simple {
+        flex: 0 0 calc(25% - 15px);
+        max-width: calc(25% - 15px);
+        padding: 15px;
+    }
+    
+    .tool-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .tool-icon i {
+        font-size: 24px;
+    }
+    
+    .tool-name {
+        font-size: 13px;
+    }
+    
+    .tool-category {
+        font-size: 10px;
+    }
+    
+    .tool-simple i {
+        font-size: 28px;
+    }
+    
+    .tool-simple span {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .tool-item {
+        flex: 0 0 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        padding: 15px 10px;
+    }
+    
+    .tool-simple {
+        flex: 0 0 calc(33.333% - 10px);
+        max-width: calc(33.333% - 10px);
+        padding: 12px;
+    }
+    
+    .tools-grid,
+    .tools-list {
+        gap: 10px;
+    }
+    
+    .tools-category h5 {
+        font-size: 18px;
+    }
+}
+
+/* Animation for tools */
+.tool-item,
+.tool-simple {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.tool-item.animate,
+.tool-simple.animate {
+    opacity: 1;
+    transform: translateY(0);
+}

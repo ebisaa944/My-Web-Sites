@@ -625,3 +625,31 @@ if ('performance' in window) {
         }, 0);
     });
 }
+
+
+
+// Tools animation on scroll
+function animateTools() {
+    const toolItems = document.querySelectorAll('.tool-item, .tool-simple');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    toolItems.forEach(item => {
+        observer.observe(item);
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    animateTools();
+    animateTimeline(); // If you still have timeline animation
+});
