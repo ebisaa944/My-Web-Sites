@@ -1,9 +1,13 @@
 {
-  "public": "portfolio/ui-themez.smartinnovates.net/items/zain",
+  "public": true,
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api/contact.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/portfolio/ui-themez.smartinnovates.net/items/zain/$1"
     }
   ]
 }
