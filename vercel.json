@@ -6,7 +6,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "portfolio/ui-themez.smartinnovates.net/items/zain/**",
+      "src": "portfolio/ui-themez.smartinnovates.net/items/Ebisa/**",
       "use": "@vercel/static"
     }
   ],
@@ -17,7 +17,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/portfolio/ui-themez.smartinnovates.net/items/zain/$1"
+      "dest": "/portfolio/ui-themez.smartinnovates.net/items/Ebisa/$1"
     }
   ]
 }
