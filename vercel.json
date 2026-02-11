@@ -1,13 +1,23 @@
 {
-  "public": true,
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/contact.js"
+      "src": "api/contact.js",
+      "use": "@vercel/node"
     },
     {
-      "source": "/(.*)",
-      "destination": "/portfolio/ui-themez.smartinnovates.net/items/zain/$1"
+      "src": "portfolio/ui-themez.smartinnovates.net/items/zain/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/contact.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/portfolio/ui-themez.smartinnovates.net/items/zain/$1"
     }
   ]
 }
