@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/",
+      "destination": "/portfolio/ui-themez.smartinnovates.net/items/Ebisa/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/portfolio/ui-themez.smartinnovates.net/items/Ebisa/$1"
     }

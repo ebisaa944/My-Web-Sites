@@ -662,14 +662,27 @@ section:hover .section-head h4 {
 .portfolio {
   overflow: hidden;
 }
+.portfolio .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+.portfolio .filtering {
+  margin-top: 10px;
+}
 .portfolio .filtering span {
-  padding: 9px 30px;
+  display: inline-block;
+  margin: 6px;
+  padding: 9px 24px;
   border-radius: 30px;
   letter-spacing: 1px;
   font-weight: 600;
   font-size: 12px;
   text-transform: uppercase;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ddd;
+  transition: all .3s;
 }
 .portfolio .filtering .active {
   background: #c49b66;
@@ -678,57 +691,23 @@ section:hover .section-head h4 {
           box-shadow: 0px 10px 30px -4px rgba(0, 0, 0, 0.2);
 }
 .portfolio .items {
-  padding: 0 30px;
-  margin-top: 60px;
+  display: flex;
+  padding: 0 15px;
+  margin-top: 30px;
   width: 50%;
 }
 .portfolio .items.width2 {
-  width: 25%;
+  width: 50%;
 }
-.portfolio .item-img {
-  position: relative;
-  overflow: hidden;
-  border-radius: 5px;
-  overflow: hidden;
+.portfolio .items.is-hidden {
+  display: none;
 }
-.portfolio .item-img:hover .item-img-overlay {
-  opacity: 1;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+.portfolio .cert-body p {
+  margin-bottom: 10px;
 }
-.portfolio .item-img:hover h6 {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-}
-.portfolio .item-img h6 {
-  position: relative;
-  margin-bottom: 8px;
-  -webkit-transform: translateY(-15px);
-          transform: translateY(-15px);
-  -webkit-transition: all .5s;
-  transition: all .5s;
-}
-.portfolio .item-img-overlay {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  background: rgba(0, 0, 0, 0.9);
+.portfolio .cert-body p strong {
   color: #fff;
-  opacity: 0;
-  -webkit-transition: all .5s;
-  transition: all .5s;
-  z-index: 2;
-  -webkit-transform: translateY(10px);
-          transform: translateY(10px);
-}
-.portfolio .item-img-overlay a {
-  font-size: 30px;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  color: #c49b66;
+  font-weight: 600;
 }
 
 /* ----------------------------------------------------------------
@@ -2525,4 +2504,87 @@ section:hover .tools .section-head h4 {
 .tool-simple.animate {
     opacity: 1;
     transform: translateY(0);
+}
+
+
+
+/* Debug and fix for About section image */
+.about .hero-img {
+    min-height: 400px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Force the background image to show */
+.bg-img[data-background] {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+
+/* Debug border to see if element is visible */
+.about .hero-img.debug {
+    border: 3px solid red;
+    background-color: #333;
+}
+
+/* Fallback image if hero1.jpg doesn't load */
+.about .hero-img:after {
+    content: 'Image not found: img/hero1.jpg';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+    z-index: 2;
+}
+
+.about .hero-img.broken:after {
+    display: block;
+}
+
+/* Add a subtle overlay for better text contrast */
+.about .hero-img:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+    z-index: 1;
+}
+
+/* Responsive fixes */
+@media screen and (max-width: 991px) {
+    .about .hero-img {
+        min-height: 300px;
+        margin: 30px 0;
+        order: 2;
+    }
+    
+    .about .row {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .about .col-lg-4 {
+        width: 100%;
+    }
+    
+    .about .skills {
+        padding: 50px 0 !important;
+    }
+    
+    .about .content {
+        padding: 50px 0 !important;
+    }
 }

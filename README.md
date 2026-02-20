@@ -1,159 +1,282 @@
-Ebisa Achame - Professional Portfolio
-https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
-https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
-https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
-https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white
-https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
-https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white
-https://img.shields.io/badge/License-MIT-yellow.svg
+# Ebisa Achame - Professional Portfolio
 
-A modern, responsive portfolio website showcasing expertise as a Network Engineer, Backend Developer, and Cybersecurity Specialist. Built with a clean dark theme, it highlights technical skills, professional experience, certifications, and projects in the IT field.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Cisco](https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-🚀 Features
-Professional Design: Clean dark theme with gold accents (#c49b66) and responsive layout
+Professional portfolio website showcasing work in network infrastructure, backend engineering, cybersecurity, and IT operations.
 
-Interactive Sections:
+## Table of Contents
+- [Professional Profile](#professional-profile)
+- [Project Overview](#project-overview)
+- [Core Objectives](#core-objectives)
+- [Highlights](#highlights)
+- [Portfolio Standards Used](#portfolio-standards-used)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Section-by-Section Website Map](#section-by-section-website-map)
+- [Contact Flow](#contact-flow)
+- [Local Development](#local-development)
+- [Deployment (Vercel)](#deployment-vercel)
+- [API](#api)
+- [Security and Reliability Notes](#security-and-reliability-notes)
+- [Customization Guide](#customization-guide)
+- [Content Maintenance Checklist](#content-maintenance-checklist)
+- [Troubleshooting](#troubleshooting)
+- [Roadmap](#roadmap)
+- [Author](#author)
+- [License](#license)
 
-Professional Experience timeline with skills tags
+## Professional Profile
+- **Profession:** Electrical and Computer Engineer
+- **Specialization:** Network Infrastructure, Backend Engineering (Django/Python), Cybersecurity
+- **Value:** Building secure, scalable, reliable systems for real operational environments
 
-Certifications grid with interactive cards
+## Project Overview
+This repository contains a production-focused personal portfolio website designed to present professional capability, practical engineering experience, and measurable technical impact.
 
-Tools & Technologies showcase
+The project includes:
+- A static frontend portfolio application (HTML/CSS/JavaScript)
+- A serverless contact endpoint using Vercel Functions
+- Email delivery integration through Resend
 
-Portfolio gallery with filtering
+## Core Objectives
+- Present a clear professional identity and specialization
+- Demonstrate evidence of competence through structured project case studies
+- Show responsibility, methodology, and growth mindset
+- Provide a reliable contact channel for recruiters, clients, and collaborators
+- Maintain a clean, readable, and professional UX on desktop and mobile
 
-Skills progress indicators
+## Highlights
+- Professional capability framework section
+- Portfolio projects with structured case-study format
+- Certifications section with detailed cards
+- Skills, tools, and experience sections
+- Contact form powered by Vercel serverless API + Resend
+- Mobile responsive layout and interactive filtering
 
-Contact Integration: Working contact form with Resend API email delivery
+## Portfolio Standards Used
+The portfolio content is intentionally structured around professional evaluation signals:
+- Clear professional identity
+- Evidence over claims
+- Results and impact
+- Structured methodology (Problem, Role, Method, Tools, Result, Lessons)
+- Depth of technical understanding
+- Continuous development
+- Tool and environment familiarity
+- Professional responsibility
+- Clean communication and presentation
+- Career direction and long-term growth
 
-Dark Mode Toggle: User preference switching
+## Tech Stack
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (jQuery-based interactions)
+- Bootstrap-based responsive layout
+- Font Awesome icons
 
-Smooth Animations: CSS transitions and JavaScript animations
+### Backend / Integration
+- Node.js (Vercel serverless runtime)
+- Resend API for email delivery
 
-Mobile-First: Fully responsive across all devices
+### Deployment
+- Vercel rewrites for static app routing + API routing
 
-🛠️ Technologies Used
-Frontend
-HTML5 – Semantic markup structure
+## Architecture
+The project follows a simple static-plus-serverless architecture:
 
-CSS3 – Custom styles with Flexbox/Grid layouts
+1. Browser loads static site from:
+   - `portfolio/ui-themez.smartinnovates.net/items/Ebisa/index.html`
+2. User submits contact form
+3. Frontend sends JSON to:
+   - `POST /api/contact`
+4. Vercel function validates payload and sends email via Resend
+5. Frontend displays success or fallback message
 
-JavaScript – Interactive functionality
-
-jQuery – DOM manipulation and plugins
-
-Bootstrap 4 – Responsive grid system
-
-Font Awesome – Icon library
-
-Backend
-Resend API – Email delivery service
-
-Node.js – Serverless function for contact form
-
-📁 Project Structure
-text
+## Project Structure
+```text
 My-Web-Sites/
-├── index.html              # Main HTML file
-├── css/
-│   ├── style.css          # Main stylesheet
-│   └── plugins.css        # Third-party plugin styles
-├── js/
-│   ├── scripts.js         # Main JavaScript
-│   ├── jquery-3.0.0.min.js
-│   └── (other plugin files)
-├── img/
-│   ├── hero1.jpg          # Profile image
-│   ├── bg.jpg             # Background image
-│   ├── portfolio/         # Project images
-│   └── blog/              # Blog images
+├── index.html
+├── portfolio/ui-themez.smartinnovates.net/items/Ebisa/
+│   ├── index.html
+│   ├── css/style.css
+│   ├── js/scripts.js
+│   ├── img/
+│   └── blog-*.html
 ├── api/
-│   └── contact.js         # Resend API integration
-├── cv.pdf                 # Downloadable resume
-└── README.md              # Documentation
-⚙️ Setup & Installation
-Local Development
-Clone the repository
+│   └── contact.js
+├── vercel.json
+├── LICENSE
+└── README.md
+```
 
-bash
+## Section-by-Section Website Map
+- **Home**
+  - Professional headline, identity, primary CTAs
+- **About**
+  - Profile summary and focus areas
+- **Professional Capability Framework**
+  - High-level standards for capability and professionalism
+- **Services**
+  - Capability domains and value statements
+- **Portfolio**
+  - Filterable project cards using structured case-study format
+- **Technical Skills**
+  - Skill categories and proficiency indicators
+- **Experience**
+  - Career timeline and role-based responsibilities
+- **Certifications**
+  - Credential cards with issuer, date, and category
+- **Tools & Technologies**
+  - Practical stack familiarity
+- **Blog**
+  - Topic-focused short articles
+- **Contact**
+  - Direct contact info + form submission channel
+
+## Contact Flow
+- Frontend form lives in:  
+  `portfolio/ui-themez.smartinnovates.net/items/Ebisa/index.html`
+- JS submission logic lives in:  
+  `portfolio/ui-themez.smartinnovates.net/items/Ebisa/js/scripts.js`
+- API handler lives in:  
+  `api/contact.js`
+
+Validation and behavior:
+- Required fields are checked before submit
+- API accepts only `POST`
+- API returns success/error JSON for clear frontend feedback
+
+## Local Development
+```bash
 git clone https://github.com/ebisaa944/My-Web-Sites.git
 cd My-Web-Sites
-Open in browser or use local server
-
-bash
-# Using Python
 python -m http.server 8000
-Deployment
-Push to GitHub
+```
 
-Connect to Vercel/Netlify
+Open:
+- `http://localhost:8000/`
+- `http://localhost:8000/portfolio/ui-themez.smartinnovates.net/items/Ebisa/index.html`
 
-Set environment variable:
+## Deployment (Vercel)
+Set environment variables:
 
-text
+```text
 RESEND_API_KEY=your_api_key_here
-📧 Contact Form Setup
-The contact form uses Resend API. Configuration:
+ALLOWED_ORIGIN=https://your-domain.com
+```
 
-Sign up at resend.com
+Routing is controlled by:
+- `vercel.json`
 
-Create API key and add domain
+Current intent:
+- Route `/api/*` to serverless function handlers
+- Route `/` to portfolio entry
+- Serve other static paths from the portfolio directory
 
-Update api/contact.js with your email
+## API
+### `POST /api/contact`
+Submits contact form data:
+- `name`
+- `email`
+- `subject`
+- `message`
 
-Form submission endpoint: /api/contact
+Response:
+- `200`: success payload
+- `400`: validation error
+- `405`: method not allowed
+- `500`: server/send failure
 
-javascript
-// API configuration
-const { Resend } = require('resend');
-const resend = new Resend(process.env.RESEND_API_KEY);
-🎨 Customization Guide
-Update Personal Information
-About Section: Edit personal details in index.html
+## Security and Reliability Notes
+- External links opened in new tabs use `rel="noopener noreferrer"`
+- API CORS origin can be restricted via `ALLOWED_ORIGIN`
+- Form has frontend + backend validation
+- Includes fallback contact email for delivery interruptions
 
-Experience: Update work history in experience section
+## Customization Guide
+### Profile and Content
+- Edit main content in:
+  - `portfolio/ui-themez.smartinnovates.net/items/Ebisa/index.html`
 
-Certifications: Add your certifications in cert-grid
+### Styling
+- Edit visual design in:
+  - `portfolio/ui-themez.smartinnovates.net/items/Ebisa/css/style.css`
 
-Skills: Modify skill progress values
+### Interactions
+- Edit UI/behavior scripts in:
+  - `portfolio/ui-themez.smartinnovates.net/items/Ebisa/js/scripts.js`
 
-Projects: Update portfolio items with your work
+### Contact Handling
+- Edit backend validation/email behavior in:
+  - `api/contact.js`
 
-Contact: Change email, phone, and social links
+### Social and Contact Links
+- Keep links current in `index.html`:
+  - LinkedIn
+  - GitHub
+  - Email
+  - Phone
+  - Location
 
-Change Theme Colors
-Edit in style.css:
+## Content Maintenance Checklist
+- Replace placeholder/legacy links
+- Keep certifications and dates current
+- Update project outcomes with measurable impact
+- Ensure every project card has:
+  - Problem
+  - Role
+  - Method
+  - Tools
+  - Result
+  - Lessons
+- Re-test contact form after any deployment change
+- Verify mobile layout after major content updates
 
-css
-:root {
-    --primary-color: #c49b66; /* Main gold color */
-}
-🔗 API Endpoints
-Endpoint	Method	Description
-/api/contact	POST	Submit contact form
-Form Fields: name, email, subject, message		
-📱 Responsive Breakpoints
-Desktop: ≥ 1200px (3 columns layout)
+## Troubleshooting
+### Contact form not sending
+- Confirm `RESEND_API_KEY` is set
+- Confirm API route is reachable (`/api/contact`)
+- Check Vercel function logs for runtime errors
 
-Tablet: 768px - 1199px (2 columns layout)
+### Portfolio filters not working
+- Hard refresh browser cache (`Ctrl+F5`)
+- Check for JS console errors in browser dev tools
+- Confirm filter classes match item classes in markup
 
-Mobile: < 768px (1 column layout)
+### Styles not updating
+- Ensure the edited file is:
+  - `portfolio/ui-themez.smartinnovates.net/items/Ebisa/css/style.css`
+- Clear cache and reload
 
-👨‍💻 Author
-Ebisa Achame Mihirate
+### Local vs deployed behavior differs
+- Verify rewrite rules in `vercel.json`
+- Verify env vars in Vercel dashboard
 
-Electrical & Computer Engineer
+## Roadmap
+- Add downloadable PDF resume asset
+- Add deeper project pages with screenshots/architecture diagrams
+- Add analytics for contact conversion and section engagement
+- Add automated linting/format checks for JS/CSS consistency
+- Add multilingual support for broader audience reach
 
-Network & Infrastructure Specialist
+## Author
+**Ebisa Achame Mihirate**  
+Electrical & Computer Engineer  
+Network & Infrastructure Specialist  
+Backend Developer (Django/Python)  
+Cybersecurity Practitioner  
 
-Backend Developer (Django/Python)
+- Location: Addis Ababa, Ethiopia
+- Email: `ebisaachame123@gmail.com`
+- LinkedIn: `https://www.linkedin.com/in/ebisa-achame-mihirate-1b3667280/`
+- GitHub: `https://github.com/ebisaa944`
 
-Cybersecurity Practitioner
-
-📍 Addis Ababa, Ethiopia
-📧 ebisaachame123@gmail.com
-🔗 LinkedIn Profile
-💻 GitHub
-
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## License
+This project is licensed under the MIT License. See `LICENSE`.

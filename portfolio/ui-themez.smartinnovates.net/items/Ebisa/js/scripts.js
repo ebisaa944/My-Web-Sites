@@ -115,6 +115,33 @@ $(function() {
         }
     });
 
+    // Portfolio filtering (Flexbox layout)
+    function initPortfolioFilter() {
+        var $portfolio = $('.portfolio');
+        if (!$portfolio.length) return;
+
+        var $portfolioItems = $portfolio.find('.gallery .items');
+        var $filterButtons = $portfolio.find('.filtering span');
+
+        $filterButtons.off('click.portfolioFilter').on('click.portfolioFilter', function() {
+            var filterValue = $(this).attr('data-filter');
+            $(this).addClass('active').siblings().removeClass('active');
+
+            if (filterValue === '*') {
+                $portfolioItems.removeClass('is-hidden');
+                return;
+            }
+
+            var filterClass = filterValue.replace('.', '');
+            $portfolioItems.each(function() {
+                var $item = $(this);
+                $item.toggleClass('is-hidden', !$item.hasClass(filterClass));
+            });
+        });
+    }
+
+    initPortfolioFilter();
+
     // =====================================
     // ==== Professional Features ====
     // =====================================
@@ -402,47 +429,11 @@ $(window).on("load",function (){
     // stellar
     wind.stellar();
 
-    // isotope
-    $('.gallery').isotope({
-      // options
-      itemSelector: '.items',
-      percentPosition: true,
-      masonry: {
-        // use element for option
-        columnWidth: '.width2'
-      }
-    });
-
-    var $gallery = $('.gallery').isotope({
-      // options
-    });
-
-    // filter items on button click
-    $('.filtering').on( 'click', 'span', function() {
-
-        var filterValue = $(this).attr('data-filter');
-
-        $gallery.isotope({ filter: filterValue });
-
-    });
-
-    $('.filtering').on( 'click', 'span', function() {
-
-        $(this).addClass('active').siblings().removeClass('active');
-
-    });
-
     // Initialize contact form for Resend.com
     function initContactForm() {
         const $contactForm = $('#contact-form');
         
         if ($contactForm.length) {
-            // Remove any Formspree action and method attributes
-            $contactForm.removeAttr('action').removeAttr('method');
-            
-            // Remove old validator if exists
-            $contactForm.off('submit').validator('destroy');
-            
             // Add custom validation styles
             $contactForm.find('input, textarea').on('blur', function() {
                 const $this = $(this);
@@ -651,5 +642,59 @@ function animateTools() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     animateTools();
-    animateTimeline(); // If you still have timeline animation
+    // Guard optional timeline animation so it never blocks page rendering.
+    if (typeof animateTimeline === 'function') {
+        animateTimeline();
+    }
+});
+
+
+// Check if About section image loads properly
+document.addEventListener('DOMContentLoaded', function() {
+    const heroImg = document.querySelector('.about .hero-img');
+    
+    if (heroImg) {
+        // Get the background image URL from data-background attribute
+        const bgUrl = heroImg.getAttribute('data-background');
+        
+        if (bgUrl) {
+            // Create a test image to check if it loads
+            const testImg = new Image();
+            testImg.onload = function() {
+                console.log('About image loaded successfully:', bgUrl);
+                heroImg.classList.remove('broken');
+            };
+            testImg.onerror = function() {
+                console.error('About image failed to load:', bgUrl);
+                heroImg.classList.add('broken');
+                heroImg.classList.add('debug');
+                
+                // Try alternative image names
+                const altImages = [
+                    'img/hero.jpg',
+                    'img/profile.jpg',
+                    'img/profile.jpeg',
+                    'img/me.jpg',
+                    'img/ebisa.jpg'
+                ];
+                
+                // Try loading alternative images
+                for (let altImg of altImages) {
+                    const testAlt = new Image();
+                    testAlt.onload = function() {
+                        console.log('Found alternative image:', altImg);
+                        heroImg.setAttribute('data-background', altImg);
+                        heroImg.style.backgroundImage = `url('${altImg}')`;
+                        heroImg.classList.remove('broken');
+                        break;
+                    };
+                    testAlt.src = altImg;
+                }
+            };
+            testImg.src = bgUrl;
+            
+            // Also set the background image directly
+            heroImg.style.backgroundImage = `url('${bgUrl}')`;
+        }
+    }
 });
