@@ -1,8 +1,8 @@
-const { Resend } = require('resend');
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-module.exports = async function contactHandler(req, res) {
+export default async function contactHandler(req, res) {
   // Enable CORS (no credentials required)
   res.setHeader('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN || '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -19,17 +19,22 @@ module.exports = async function contactHandler(req, res) {
   }
 
   try {
-    const { name, email, subject, message } = req.body;
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({ error: 'Server email configuration is missing (RESEND_API_KEY).' });
+    }
+
+    const payload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const { name, email, subject, message } = payload || {};
 
     // Basic validation
-    if (!name || !email || !subject || !message) {
+    if (!name?.trim() || !email?.trim() || !subject?.trim() || !message?.trim()) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
     const { data, error } = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['ebisaachame123@gmail.com'],
-      reply_to: email,
+      from: process.env.RESEND_FROM || 'Portfolio Contact <onboarding@resend.dev>',
+      to: [process.env.CONTACT_TO || 'ebisaachame123@gmail.com'],
+      reply_to: email.trim(),
       subject: `Portfolio Message: ${subject}`,
       html: `
         <h3>New Contact Form Submission</h3>
@@ -37,13 +42,13 @@ module.exports = async function contactHandler(req, res) {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Subject:</strong> ${subject}</p>
         <p><strong>Message:</strong></p>
-        <p>${message.replaceAll('\n', '<br>')}</p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
       `,
     });
 
     if (error) {
       console.error('Resend error:', error);
-      return res.status(500).json({ error: 'Failed to send email' });
+      return res.status(500).json({ error: error.message || 'Failed to send email' });
     }
 
     res.status(200).json({ 
@@ -54,6 +59,6 @@ module.exports = async function contactHandler(req, res) {
 
   } catch (error) {
     console.error('Server error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: error.message || 'Internal server error' });
   }
-};
+}
