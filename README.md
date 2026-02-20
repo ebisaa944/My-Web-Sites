@@ -20,6 +20,8 @@ Professional portfolio website showcasing work in network infrastructure, backen
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Section-by-Section Website Map](#section-by-section-website-map)
+- [Theme System](#theme-system)
+- [Recent Updates](#recent-updates)
 - [Contact Flow](#contact-flow)
 - [Local Development](#local-development)
 - [Deployment (Vercel)](#deployment-vercel)
@@ -57,6 +59,8 @@ The project includes:
 - Portfolio projects with structured case-study format
 - Certifications section with detailed cards
 - Skills, tools, and experience sections
+- Custom Welcome hero feature layout with profile image panel
+- Theme toggle with full `light-mode` and `dark-mode` support
 - Contact form powered by Vercel serverless API + Resend
 - Mobile responsive layout and interactive filtering
 
@@ -139,6 +143,30 @@ My-Web-Sites/
   - Topic-focused short articles
 - **Contact**
   - Direct contact info + form submission channel
+
+## Theme System
+The portfolio supports two explicit UI themes:
+- `light-mode`: soft warm-neutral palette for readability
+- `dark-mode`: high-contrast dark palette for low-light viewing
+
+Theme implementation details:
+- Toggle control: `#darkModeToggle`
+- Class switching target: `<body>`
+- State persistence: `localStorage` key `darkMode`
+- Styling source: `portfolio/ui-themez.smartinnovates.net/items/Ebisa/css/style.css`
+
+## Recent Updates
+- Reworked Welcome section into a featured hero-style layout
+- Added `hero (2).jpg` as Welcome visual panel
+- Kept About section image independently styled (`hero1.jpg`)
+- Stabilized theme toggle initialization and persistence behavior
+- Applied light-mode overrides across all major sections, including:
+  - Tools & Technologies
+  - Portfolio
+  - Experience
+  - Certifications
+  - Blog
+  - Contact
 
 ## Contact Flow
 - Frontend form lives in:  
