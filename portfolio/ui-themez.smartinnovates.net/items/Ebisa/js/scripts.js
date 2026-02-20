@@ -212,6 +212,28 @@ $(function() {
         }
     });
 
+    async function submitViaFormspree(actionUrl, formData) {
+        const response = await fetch(actionUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+            let fallbackError = `Fallback send failed (${response.status})`;
+            try {
+                const data = await response.json();
+                if (data && data.error) {
+                    fallbackError = data.error;
+                }
+            } catch (_) {}
+            throw new Error(fallbackError);
+        }
+    }
+
     // Contact Form Submission with Resend.com
     $('#contact-form').on('submit', function(e) {
         e.preventDefault();
@@ -220,6 +242,7 @@ $(function() {
         const $submitBtn = $form.find('button[type="submit"]');
         const $messages = $form.find('.messages');
         const originalText = $submitBtn.find('span').text();
+        const formAction = $form.attr('action');
         
         // Show loading state
         $submitBtn.html('<i class="fas fa-spinner fa-spin"></i> Sending...').prop('disabled', true);
@@ -241,21 +264,43 @@ $(function() {
             },
             body: JSON.stringify(formData)
         })
-        .then(response => {
+        .then(async response => {
             if (response.ok) {
                 // Success
                 $messages.html('<div class="alert alert-success">✅ Message sent successfully! I\'ll get back to you soon.</div>');
                 $form[0].reset();
             } else {
-                // Error
-                response.json().then(data => {
-                    $messages.html('<div class="alert alert-danger">❌ ' + (data.error || 'There was a problem sending your message. Please email me directly at ebisaachame123@gmail.com') + '</div>');
-                }).catch(() => {
-                    $messages.html('<div class="alert alert-danger">❌ There was a problem sending your message. Please email me directly at ebisaachame123@gmail.com</div>');
-                });
+                let apiError = `There was a problem sending your message (API ${response.status}).`;
+                try {
+                    const data = await response.json();
+                    if (data && data.error) apiError = data.error;
+                } catch (_) {}
+
+                if (formAction) {
+                    try {
+                        await submitViaFormspree(formAction, formData);
+                        $messages.html('<div class="alert alert-success">✅ Message sent successfully via fallback channel. I\'ll get back to you soon.</div>');
+                        $form[0].reset();
+                        return;
+                    } catch (fallbackError) {
+                        $messages.html('<div class="alert alert-danger">❌ ' + apiError + ' Backup channel also failed. Please email me directly at ebisaachame123@gmail.com</div>');
+                        return;
+                    }
+                }
+
+                $messages.html('<div class="alert alert-danger">❌ ' + apiError + ' Please email me directly at ebisaachame123@gmail.com</div>');
             }
         })
-        .catch(error => {
+        .catch(async error => {
+            if (formAction) {
+                try {
+                    await submitViaFormspree(formAction, formData);
+                    $messages.html('<div class="alert alert-success">✅ Message sent successfully via fallback channel. I\'ll get back to you soon.</div>');
+                    $form[0].reset();
+                    return;
+                } catch (_) {}
+            }
+
             // Network error
             $messages.html('<div class="alert alert-danger">❌ Network error. Please try again or email me directly at ebisaachame123@gmail.com</div>');
         })
