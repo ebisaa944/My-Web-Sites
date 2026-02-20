@@ -679,14 +679,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 ];
                 
                 // Try loading alternative images
+                let fallbackResolved = false;
                 for (let altImg of altImages) {
                     const testAlt = new Image();
                     testAlt.onload = function() {
+                        if (fallbackResolved) return;
+                        fallbackResolved = true;
                         console.log('Found alternative image:', altImg);
                         heroImg.setAttribute('data-background', altImg);
                         heroImg.style.backgroundImage = `url('${altImg}')`;
                         heroImg.classList.remove('broken');
-                        break;
                     };
                     testAlt.src = altImg;
                 }
@@ -697,4 +699,25 @@ document.addEventListener('DOMContentLoaded', function() {
             heroImg.style.backgroundImage = `url('${bgUrl}')`;
         }
     }
+});
+
+// Check if Welcome header background loads; fallback to section-style dark background.
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.header.bg-img');
+    if (!header) return;
+
+    const bgUrl = header.getAttribute('data-background');
+    if (!bgUrl) {
+        header.classList.add('no-hero-image');
+        return;
+    }
+
+    const testImg = new Image();
+    testImg.onload = function() {
+        header.classList.remove('no-hero-image');
+    };
+    testImg.onerror = function() {
+        header.classList.add('no-hero-image');
+    };
+    testImg.src = bgUrl;
 });
