@@ -16,16 +16,18 @@ $(function() {
 
     var wind = $(window);
 
-    // scrollIt
-    $.scrollIt({
-      upKey: 38,                // key code to navigate to the next section
-      downKey: 40,              // key code to navigate to the previous section
-      easing: 'swing',          // the easing function for animation
-      scrollTime: 600,          // how long (in ms) the animation takes
-      activeClass: 'active',    // class given to the active nav element
-      onPageChange: null,       // function(pageIndex) that is called when page is changed
-      topOffset: -80            // offset (in px) for fixed top navigation
-   });
+    // scrollIt (guarded to avoid breaking the rest of scripts if plugin fails to load)
+    if ($.scrollIt) {
+        $.scrollIt({
+          upKey: 38,                // key code to navigate to the next section
+          downKey: 40,              // key code to navigate to the previous section
+          easing: 'swing',          // the easing function for animation
+          scrollTime: 600,          // how long (in ms) the animation takes
+          activeClass: 'active',    // class given to the active nav element
+          onPageChange: null,       // function(pageIndex) that is called when page is changed
+          topOffset: -80            // offset (in px) for fixed top navigation
+       });
+    }
 
     // navbar scrolling background
     wind.on("scroll",function () {
@@ -148,7 +150,7 @@ $(function() {
 
     // Dark Mode Toggle
     $('#darkModeToggle').on('click', function() {
-        $('body').toggleClass('dark-mode');
+        $('body').toggleClass('dark-mode light-mode');
         const icon = $(this).find('i');
         if ($('body').hasClass('dark-mode')) {
             icon.removeClass('fa-moon').addClass('fa-sun');
@@ -161,8 +163,11 @@ $(function() {
 
     // Check for saved dark mode preference
     if (localStorage.getItem('darkMode') === 'enabled') {
-        $('body').addClass('dark-mode');
+        $('body').removeClass('light-mode').addClass('dark-mode');
         $('#darkModeToggle i').removeClass('fa-moon').addClass('fa-sun');
+    } else {
+        $('body').removeClass('dark-mode').addClass('light-mode');
+        $('#darkModeToggle i').removeClass('fa-sun').addClass('fa-moon');
     }
 
     // Back to Top Button
