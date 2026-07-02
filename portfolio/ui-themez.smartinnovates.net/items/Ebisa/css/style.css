@@ -271,21 +271,26 @@ section:hover .section-head h4 {
      [ 02 Start Buttons ]
 -----------------------------------------------------------------*/
 .butn {
-  padding: 12px 34px;
+  padding: 14px 40px;
   background: #fff;
-  border-radius: 30px;
+  border-radius: 6px;
   border: 1px solid transparent;
   position: relative;
   z-index: 3;
   margin-left: 10px;
   margin-right: 10px;
-  -webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all .4s;
-  transition: all .4s;
+  margin-top: 5px;
+  -webkit-box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none !important;
   overflow: hidden;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  will-change: transform, box-shadow;
 }
 .butn span {
   position: relative;
@@ -325,36 +330,50 @@ section:hover .section-head h4 {
 }
 
 .butn-bg {
-  background: #c49b66;
+  background: linear-gradient(135deg, #c49b66 0%, #d4a876 100%);
   border-color: #c49b66;
   color: #fff;
+  box-shadow: 0px 10px 30px rgba(196, 155, 102, 0.25);
+}
+.butn-bg:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 15px 40px rgba(196, 155, 102, 0.35);
 }
 .butn-bg:hover span {
-  color: #c49b66;
+  color: #fff;
 }
 
 .butn-light {
   background: #fff;
+  color: #161617;
 }
 .butn-light:before, .butn-light:after {
   background: #c49b66;
+}
+.butn-light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
 }
 .butn-light:hover span {
   color: #fff;
 }
 .butn-light span {
-  color: #c49b66;
+  color: #161617;
+  font-weight: 600;
 }
 
 .butn-bord {
   background: transparent;
-  border: 1px solid #eee;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #eee;
 }
 .butn-bord:before, .butn-bord:after {
   background: #c49b66;
 }
 .butn-bord:hover {
   border-color: #c49b66;
+  transform: translateY(-2px);
+  background: rgba(196, 155, 102, 0.1);
 }
 .butn-bord:hover span {
   color: #fff;
@@ -482,12 +501,14 @@ section:hover .section-head h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 34px;
-  padding: 28px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(10, 10, 12, 0.8);
-  box-shadow: 0px 20px 55px rgba(0, 0, 0, 0.35);
+  gap: 50px;
+  padding: 50px;
+  border-radius: 12px;
+  border: 1px solid rgba(196, 155, 102, 0.15);
+  background: rgba(15, 15, 20, 0.85);
+  box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .welcome-copy {
   flex: 1;
@@ -500,9 +521,11 @@ section:hover .section-head h4 {
   margin-bottom: 12px;
 }
 .welcome-copy h1 {
-  margin: 0 0 16px 0;
-  font-size: 44px;
-  line-height: 1.2;
+  margin: 0 0 20px 0;
+  font-size: 48px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #fff;
 }
 .welcome-summary {
   color: #d8d8d8;
@@ -694,8 +717,17 @@ section:hover .section-head h4 {
 -----------------------------------------------------------------*/
 .services .item {
   text-align: center;
-  padding: 50px 20px;
-  background: #0a0a0c;
+  padding: 45px 30px;
+  background: rgba(15, 15, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all 0.35s ease;
+  will-change: transform, background, box-shadow;
+}
+.services .item:hover {
+  background: rgba(196, 155, 102, 0.08);
+  border-color: rgba(196, 155, 102, 0.2);
+  transform: translateY(-5px);
 }
 .services .item:hover .icon {
   color: #fff;
@@ -708,15 +740,16 @@ section:hover .section-head h4 {
 .services .item .icon {
   display: inline-block;
   color: #c49b66;
-  font-size: 45px;
-  width: 85px;
-  height: 85px;
-  line-height: 85px;
-  margin-bottom: 30px;
+  font-size: 42px;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  margin-bottom: 25px;
   position: relative;
-  -webkit-transition: all .4s;
-  transition: all .4s;
+  -webkit-transition: all .35s ease;
+  transition: all .35s ease;
   z-index: 3;
+  will-change: transform, color;
 }
 .services .item .icon:after {
   content: '';
@@ -725,18 +758,20 @@ section:hover .section-head h4 {
   top: 0;
   left: 0;
   position: absolute;
-  border-radius: 30px;
+  border-radius: 8px;
   background: rgba(200, 200, 200, 0.05);
   z-index: -1;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  -webkit-transition: all .4s;
-  transition: all .4s;
+  -webkit-transition: all .35s ease;
+  transition: all .35s ease;
 }
 .services .item h6 {
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 17px;
   margin-bottom: 15px;
+  color: #fff;
+  letter-spacing: 0.3px;
 }
 .services .item p {
   font-size: 14px;
@@ -2918,5 +2953,241 @@ body.light-mode .tool-progress {
     
     .about .content {
         padding: 50px 0 !important;
+    }
+}
+
+/* =====================================
+==== Advanced CSS Features & Variables */
+
+/* CSS Custom Properties for Theme Management */
+:root {
+    --primary-color: #c49b66;
+    --primary-dark: #8f6f4a;
+    --secondary-color: #d4a876;
+    --dark-bg: #0f0f0f;
+    --darker-bg: #0a0a0c;
+    --light-text: #fff;
+    --muted-text: #a0a0a0;
+    --accent-gold: linear-gradient(135deg, #c49b66 0%, #d4a876 100%);
+    --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --shadow-elevated: 0px 20px 60px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0px 0px 30px rgba(196, 155, 102, 0.2);
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* Advanced Accessibility & Focus States */
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.butn:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px rgba(196, 155, 102, 0.1);
+}
+
+/* Advanced Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes shimmerBar {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Enhanced Progress Bar */
+.progress-bar {
+    position: relative;
+    overflow: hidden;
+    will-change: width;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmerBar 2s infinite;
+}
+
+/* Advanced Form Elements */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    transition: var(--transition-smooth);
+    border-color: rgba(196, 155, 102, 0.3);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(196, 155, 102, 0.1);
+}
+
+/* Enhanced Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(196, 155, 102, 0.5);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(196, 155, 102, 0.8);
+}
+
+/* Enhanced Image Effects */
+img {
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+img:hover {
+    filter: brightness(1.1) saturate(1.15);
+    transform: scale(1.02);
+}
+
+/* Enhanced Typography */
+h1, h2, h3 {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-copy h1 {
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Advanced Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Advanced Dark Mode Enhancements */
+body.dark-mode {
+    --dark-bg: #000000;
+    --darker-bg: #0a0a0a;
+    --shadow-elevated: 0px 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Advanced Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
+    .butn {
+        padding: 16px 44px;
+        min-height: 48px;
+    }
+    
+    .navbar .navbar-nav .nav-link {
+        padding: 12px 0;
+        min-height: 44px;
+    }
+}
+
+/* Advanced High Resolution Display Support */
+@media (min-resolution: 192dpi) {
+    body {
+        font-size: 15.5px;
+    }
+}
+
+/* Feature Detection with CSS Supports */
+@supports (backdrop-filter: blur(10px)) {
+    .welcome-feature {
+        backdrop-filter: blur(10px);
+    }
+}
+
+@supports (mix-blend-mode: overlay) {
+    .cert-item::after {
+        mix-blend-mode: overlay;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar, .dark-mode-toggle, .loading, .scroll-down {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        break-after: avoid;
     }
 }
