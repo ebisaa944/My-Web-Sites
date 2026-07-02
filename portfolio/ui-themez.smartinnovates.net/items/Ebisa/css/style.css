@@ -499,6 +499,7 @@ section:hover .section-head h4 {
 }
 .welcome-feature {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 50px;
@@ -509,10 +510,12 @@ section:hover .section-head h4 {
   box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  flex-wrap: nowrap;
 }
 .welcome-copy {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
+  max-width: calc(100% - 340px - 50px);
 }
 .welcome-kicker {
   color: #c49b66;
@@ -531,11 +534,13 @@ section:hover .section-head h4 {
   color: #d8d8d8;
   font-size: 15px;
   line-height: 1.75;
-  max-width: 560px;
+  max-width: 500px;
+  margin-bottom: 20px;
 }
 .welcome-image-wrap {
+  flex: 0 0 340px;
   width: 340px;
-  max-width: 42%;
+  height: 390px;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1893,9 +1898,10 @@ body.light-mode .contact .info {
 .header-buttons {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 15px;
     margin-top: 30px;
+    align-items: center;
 }
 
 /* Portfolio enhancements */
